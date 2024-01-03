@@ -2,7 +2,7 @@ exclude: '^$'
 fail_fast: false
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v3.3.3
+  rev: v4.4.0
   hooks:
   - id: check-added-large-files
     args: ['--maxkb=1024']
@@ -18,21 +18,22 @@ repos:
     exclude: ^Pipfile
   - id: trailing-whitespace
     args: ['--markdown-linebreak-ext=md']
-#- repo: https://github.com/antonbabenko/pre-commit-terraform
-#  rev: v1.31.0
-#  hooks:
-#  - id: terraform_tflint
-#  - id: terraform_tfsec
-#  - id: terraform_fmt
-#  - id: terraform_validate
-#  - id: terraform_docs
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.47.0
+  hooks:
+  - id: terraform_fmt
+  - id: terraform_validate
+  #   -   id: terraform_docs_replace
+  - id: terraform_tflint
+    args: ['--args=--disable-rule=terraform_unused_declarations']
+  - id: terraform_tfsec
 - repo: https://github.com/PyCQA/isort
-  rev: 5.12.0
+  rev: 5.13.2
   hooks:
   - id: isort
     additional_dependencies: ["toml"]
 - repo: https://github.com/psf/black
-  rev: 23.3.0
+  rev: 23.12.1
   hooks:
   - id: black
     additional_dependencies: ["toml"]
