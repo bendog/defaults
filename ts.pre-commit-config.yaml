@@ -25,6 +25,16 @@ repos:
     exclude: ^charts/
   - id: check-toml
 
+# editorconfig
+- repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+  rev: 2.7.3
+  hooks:
+    - id: editorconfig-checker
+      alias: ec
+      stages: [ pre-commit ]
+      name: "EditorConfig Rules"
+      exclude: ^LICENSES/
+
 # commit messages
 - repo: https://github.com/commitizen-tools/commitizen
   rev: v3.10.0
@@ -32,27 +42,34 @@ repos:
     - id: commitizen
       stages: [commit-msg]
 
-# Terraform
-- repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.89.1
+# TypeScript
+- repo: https://github.com/awebdeveloper/pre-commit-tslint
+  rev: 'v0.0.2'  # Use the sha or tag you want to point at
   hooks:
-  - id: terraform_fmt
-  - id: terraform_validate
-  #   -   id: terraform_docs_replace
-  - id: terraform_tflint
-    args: ['--args=--disable-rule=terraform_unused_declarations']
-  - id: terraform_tfsec
+    - id: tslint
+      additional_dependencies: ['tslint@5.0.0']
 
-# Python tools
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.4.2
-  hooks:
-    # Run the linter.
-    - id: ruff
-      args: [--fix, --exit-non-zero-on-fix, --show-fixes]
-    # Run the formatter.
-    - id: ruff-format
+# # Terraform
+# - repo: https://github.com/antonbabenko/pre-commit-terraform
+#   rev: v1.89.1
+#   hooks:
+#   - id: terraform_fmt
+#   - id: terraform_validate
+#   #   -   id: terraform_docs_replace
+#   - id: terraform_tflint
+#     args: ['--args=--disable-rule=terraform_unused_declarations']
+#   - id: terraform_tfsec
+
+# # Python tools
+# - repo: https://github.com/astral-sh/ruff-pre-commit
+#   # Ruff version.
+#   rev: v0.4.2
+#   hooks:
+#     # Run the linter.
+#     - id: ruff
+#       args: [--fix, --exit-non-zero-on-fix, --show-fixes]
+#     # Run the formatter.
+#     - id: ruff-format
 
 # Shell script tools
 - repo: https://github.com/pecigonzalo/pre-commit-shfmt
@@ -67,21 +84,6 @@ repos:
     rev: v0.10.0.1
     hooks:
     -   id: shellcheck
-
-- repo: https://github.com/bridgecrewio/checkov.git
-  rev: '3.2.410' # change to tag or sha
-  hooks:
-    - id: checkov
-    - id: checkov_diff
-      args:
-        - '--skip-check'
-        - 'CKV_DOCKER_2,CKV_SECRET_6'
-        - '--quiet'
-        - '-f' # required and must come last
-    - id: checkov_secrets
-      args:
-        - '--quiet'
-        - '-f' # required and must come last
 
 # LEGACY python
 # - repo: https://github.com/PyCQA/isort
