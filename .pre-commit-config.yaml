@@ -2,11 +2,11 @@ exclude: '^$'
 fail_fast: false
 repos:
 -   repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.7.0
+    rev: v0.8.0
     hooks:
     -   id: pre-commit-update
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     -   id: check-added-large-files
         args: ['--maxkb=1024']
@@ -31,14 +31,14 @@ repos:
 
 # commit messages
 -   repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.8.0
+    rev: v4.8.3
     hooks:
     -   id: commitizen
         stages: [commit-msg]
 
 # Terraform
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.99.0
+    rev: v1.100.0
     hooks:
     -   id: terraform_fmt
     -   id: terraform_validate
@@ -50,7 +50,7 @@ repos:
 # Python tools
 -   repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-    rev: v0.11.10
+    rev: v0.12.8
     hooks:
     # Run the linter.
     -   id: ruff
@@ -68,12 +68,12 @@ repos:
         -   "2"
 
 -   repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: v0.11.0.1
     hooks:
     -   id: shellcheck
 
 -   repo: https://github.com/bridgecrewio/checkov.git
-    rev: '3.2.427' # change to tag or sha
+    rev: '3.2.461' # change to tag or sha
     hooks:
     -   id: checkov
     -   id: checkov_diff
@@ -86,6 +86,14 @@ repos:
         args:
         -   '--quiet'
         -   '-f' # required and must come last
+
+# Markdown tools
+-   repo: https://github.com/rvben/rumdl-pre-commit
+    rev: v0.0.114 # Use the latest release tag
+    hooks:
+    -   id: rumdl
+        # To automatically fix issues:
+        args: [--fix]
 
 # LEGACY python
 # - repo: https://github.com/PyCQA/isort
