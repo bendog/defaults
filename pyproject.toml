@@ -17,6 +17,11 @@ ignore = [
     "E501",  # line-too-long
 ]
 
+# Rumdl settings
+# This is a tool for formatting markdown files, it can be used to fix issues automatically.
+[tool.rumdl]
+line-length = 100
+
 # LEGACY Formatting settings - Keeping these to allow for these tools to run compatibily with Ruff.
 [tool.isort]
 profile = "black"
