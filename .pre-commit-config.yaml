@@ -31,14 +31,14 @@ repos:
 
 # commit messages
 -   repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.8.3
+    rev: v4.9.1
     hooks:
     -   id: commitizen
         stages: [commit-msg]
 
 # Markdown tools
 -   repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.0.115 # Use the latest release tag
+    rev: v0.0.147 # Use the latest release tag
     hooks:
     -   id: rumdl
         # To automatically fix issues:
@@ -47,7 +47,7 @@ repos:
 # Python tools
 -   repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-    rev: v0.12.8
+    rev: v0.13.2
     hooks:
     # Run the linter.
     -   id: ruff
@@ -71,7 +71,7 @@ repos:
 
 # Terraform
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.100.0
+    rev: v1.101.0
     hooks:
     -   id: terraform_fmt
     -   id: terraform_validate
@@ -89,7 +89,7 @@ repos:
 
 # Security tools
 -   repo: https://github.com/bridgecrewio/checkov.git
-    rev: '3.2.461' # change to tag or sha
+    rev: '3.2.473' # change to tag or sha
     hooks:
     -   id: checkov_diff
         args:
