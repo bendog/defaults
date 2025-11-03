@@ -38,7 +38,7 @@ repos:
 
 # Markdown tools
 -   repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.0.147 # Use the latest release tag
+    rev: v0.0.170 # Use the latest release tag
     hooks:
     -   id: rumdl
         # To automatically fix issues:
@@ -47,10 +47,10 @@ repos:
 # Python tools
 -   repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-    rev: v0.13.2
+    rev: v0.14.3
     hooks:
     # Run the linter.
-    -   id: ruff
+    -   id: ruff-check
         args: [--fix, --exit-non-zero-on-fix, --show-fixes]
     # Run the formatter.
     -   id: ruff-format
@@ -71,7 +71,7 @@ repos:
 
 # Terraform
 -   repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.101.0
+    rev: v1.103.0
     hooks:
     -   id: terraform_fmt
     -   id: terraform_validate
@@ -89,7 +89,7 @@ repos:
 
 # Security tools
 -   repo: https://github.com/bridgecrewio/checkov.git
-    rev: '3.2.473' # change to tag or sha
+    rev: '3.2.489' # change to tag or sha
     hooks:
     -   id: checkov_diff
         args:
