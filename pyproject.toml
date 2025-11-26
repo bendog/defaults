@@ -10,12 +10,29 @@ line-length = 99
 
 [tool.ruff.lint]
 select = [
-    "C",  # mccabe rules
-    "F",  # pyflakes rules
-    "E",  # pycodestyle error rules
-    "W",  # pycodestyle warning rules
-    "B",  # flake8-bugbear rules
-    "I",  # isort rules
+  # https://docs.astral.sh/ruff/rules/
+    "RUF",  # Ruff specific rules - https://docs.astral.sh/ruff/rules/#ruff-specific-rules-ruf
+    "C",    # mccabe rules - https://pypi.org/project/mccabe/
+    "F",    # pyflakes rules - https://pypi.org/project/pyflakes/
+    "E",    # pycodestyle error rules - https://pypi.org/project/pycodestyle/
+    "W",    # pycodestyle warning rules - https://pypi.org/project/pycodestyle/
+    "N",    # Naming - https://pypi.org/project/pep8-naming/
+    "A",    # builtins - https://docs.astral.sh/ruff/settings/#lintflake8-builtins
+    "B",    # flake8-bugbear rules - https://docs.astral.sh/ruff/settings/#lintflake8-bugbear
+    "I",    # isort rules - https://pypi.org/project/isort/
+    "LOG",  # logging rules - https://pypi.org/project/flake8-logging/
+    "PT",   # PyTest - https://pypi.org/project/flake8-pytest-style/
+    "INP",  # no-pep420 - https://pypi.org/project/flake8-no-pep420/
+    "ANN",  # annotation rules - https://pypi.org/project/flake8-annotations/
+    "UP",   # pyupgrade - https://pypi.org/project/pyupgrade/
+    "RET",  # returns - https://pypi.org/project/flake8-return/
+    "SIM",  # simplify - https://pypi.org/project/flake8-simplify/
+    "PLR",  # refactor - https://docs.astral.sh/ruff/rules/#refactor-plr
+    "PLW",  # warnings - https://docs.astral.sh/ruff/rules/#warning-plw
+    "FURB", # refurb - https://pypi.org/project/refurb/
+    "ASYNC",# async - https://pypi.org/project/flake8-async/
+    "DJ",   # django - https://pypi.org/project/flake8-django/
+    "FAST", # fastapi - https://pypi.org/project/fastapi/
 ]
 ignore = [
     # "C901",  # max-complexity-10
