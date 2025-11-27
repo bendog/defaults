@@ -8,22 +8,25 @@ apply: always
 
 - Follow PEP 8 guidelines
 - Use meaningful variable and function names
-- Maintain consistent indentation (4 spaces)
-- Limit lines to 99 characters where applicable
+- ALWAYS avoid repeated file names to avoid namespace conflicts
+- ALWAYS maintain indentation consistency
+- ALWAYS write code which is compatible with `ruff format`
 - All file interactions should use `pathlib.Path`
 - Use f-strings for string formatting
-- Always avoid wildcard imports
+- ALWAYS avoid wildcard imports
 - Use list comprehensions where appropriate
 - Use `enumerate()` instead of `range(len())` for loops
 - Use `with` statements where context managers are appropriate
 - Except for tests, always put imports at the start of the file
 - use relative imports where possible
-- if there is a caught exception before a raise statement always raise from that exception
+- ALWAYS use `raise` `from` for an exception if there is a caught exception before a raise statement
 
 ## Type hinting requirements
 
+- ALWAYS use type hints for function and method arguments and keyword arguments
+- ALWAYS use type hints for function and method return types
+- ALWAYS add type hints for declared variables
 - Type annotations should be in 3.13+ style
-- Use type annotations for all functions and methods
 - Use native types and avoid using the `typing` module (e.g., `list`, `dict`, `tuple`, etc.)
 - Use union types with the `|` operator (e.g., `int | None` instead of `Optional[int]`)
 - Use `TypedDict` for dictionaries with fixed structure
@@ -32,19 +35,43 @@ apply: always
 - Use `Protocol` for structural subtyping
 - Use `TypeVar` for generic types
 - Use `Callable` for function signatures
-- Use `Any` sparingly and only when absolutely necessary
+- Use `Generator` for functions which yield
+- Use `Any` sparingly and only when necessary
+- Where a type hint data structure is reused, create a type alias
 
-## Testing requirements
+### Logging requirements
+
+- Avoid using `print()` for logging; use the `logging` module instead
+- logger should be initialized with `logger = logging.getLogger(__name__)` after file imports.
+
+### Package Management Requirements
+
+- Use UV for package and project management for all python projects
+- All executed commands should be done via `uv run`
+- Avoid the use of tools which aren't already in the pyproject.toml dependencies section
+- Tools only required for testing should be in [dependency-groups] in the group `dev`
+- If a new dependency is reasonable, advise the user before using a dependency not listed in pyproject.toml
+- Package build tooling must use `uv-build` as the build engine
+
+### Testing requirements
 
 - Use `pytest` for testing
 - Write unit tests for all functions and methods
 - Write integration tests for command workflows
-- Mock external dependencies in tests
 - Ensure tests cover edge cases and error handling
-- Use fixtures for setting up test environments
 - Prefer writing tests as functions
-- Avoid using classes in tests as much as possible
-- Mock required envvars with `os.environ.setdefault` in `tests/conftest.py`
+- Avoid using classes in tests unless writing tests for a class which is inherited from
+- Where testing classes which inherit, refactor the parent classes tests into a class and inherit from the parent test class
+- Use `pytest.fixture` functions for setting up test environments
+- Mock external dependencies in tests
+- Mock all AWS resources with the `moto` package
+- Use the `pytest.MonkeyPatch.context` context manager to apply patches for mocking
+- Where ever mocked tooling can be reused use a fixture which will yield within a `pytest.MonkeyPatch.context`
+- ALWAYS mock all required envvars with a `pytest.MonkeyPatch.context` context manager inside a `@pytest.fixture(scope="session")` fixture function in `tests/conftest.py`
+- For large static mock payloads add them as files in a `resources/` directory and import them as a fixture
+- For dynamic mock payloads create helper functions which will return the payload inserting dynamic parts
+- If AWS is used ALWAYS ensure a `@pytest.fixture(scope="session")` function in `tests/conftest.py` exists to yield fake credential environment into a `pytest.MonkeyPatch.context` to prevent access to real resources
+- Use `importlib.reload` to reload required modules inside a `MonkeyPatch.context`
 
 ## Tooling to avoid
 
