@@ -38,7 +38,7 @@ repos:
 
 # Markdown tools
 -   repo: https://github.com/rvben/rumdl-pre-commit
-    rev: v0.0.181 # Use the latest release tag
+    rev: v0.0.185 # Use the latest release tag
     hooks:
     -   id: rumdl
         # To automatically fix issues:
@@ -47,7 +47,7 @@ repos:
 # Python tools
 -   repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
-    rev: v0.14.6
+    rev: v0.14.7
     hooks:
     # Run the linter.
     -   id: ruff-check
